@@ -67,7 +67,7 @@ export default function Signup() {
       className="flex justify-center items-center  min-h-full-screen"
       sx={{ margin: 'auto 0' }}
     >
-      <Card sx={{ width: 500, margin: "1rem", padding: '1.5rem' }}>
+      <Card sx={{ width: {md: 500, sm: '100%'}, margin: "1rem", padding: '1.5rem' }}>
         <Grid container>
           <Grid item lg md sm xs>
             {/* <Box
