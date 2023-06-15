@@ -26,22 +26,6 @@ const Chat = lazy(() => import('./Pages/Chat'));
 function App() {
 
   // setupAxiosInterceptors()
-
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Login />,
-    },
-    {
-      path: "/signup",
-      element: <Signup />,
-    },
-  ]);
-
-  const PublicPage = () => {
-
-  }
-
   const RequireAuth = ({ children }) => {
     let auth = localStorage.getItem('userToken');
     let location = useLocation();
@@ -57,28 +41,52 @@ function App() {
     return children;
   } 
 
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <Signup />,
+    },
+    {
+      path: "/chat",
+      element: <RequireAuth>
+      <Chat />
+    </RequireAuth>
+,
+    },
+  ]);
+
+  const PublicPage = () => {
+
+  }
+
+
   return (
     // <Provider store={store}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        {/* <Route element={<Dashboard />}> */}
-          {/* <Route path="/login" element={<LoginPage />} /> */}
-          <Route
-            path="/chat"
-            element={
-                <RequireAuth>
-                  <Chat />
-                </RequireAuth>
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path="/" element={<Login />} />
+    //     <Route path="/signup" element={<Signup />} />
+    //     {/* <Route element={<Dashboard />}> */}
+    //       {/* <Route path="/login" element={<LoginPage />} /> */}
+    //       <Route
+    //         path="/chat"
+    //         element={
+    //             <RequireAuth>
+    //               <Chat />
+    //             </RequireAuth>
 
 
-            }
-          />
-        {/* </Route> */}
-      </Routes>
-    {/* // </Provider> */}
-    </BrowserRouter>
+    //         }
+    //       />
+    //     {/* </Route> */}
+    //   </Routes>
+    // {/* // </Provider> */}
+    // </BrowserRouter>
+    <RouterProvider router={router} />
   )
 }
 
