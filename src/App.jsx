@@ -65,6 +65,20 @@ function App() {
 
 
   return (
+    <React.Suspense fallback={<p>Loading....</p>}> 
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route
+            path="/chat"
+            element={
+                <RequireAuth>
+                  <Chat />
+                </RequireAuth>
+            }
+          />
+      </Routes>
+    </React.Suspense>
     // <Provider store={store}>
     // <BrowserRouter>
     //   <Routes>
@@ -86,7 +100,7 @@ function App() {
     //   </Routes>
     // {/* // </Provider> */}
     // </BrowserRouter>
-    <RouterProvider router={router} />
+    // <RouterProvider router={router} />
   )
 }
 

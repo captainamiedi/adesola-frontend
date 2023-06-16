@@ -23,6 +23,7 @@ const ChatInput = ({ inputMessage, setInputMessage, sendMessage, mode, handleFil
       {fileMode.includes(mode) && type !== 'answer' && <input 
         type="file" 
         onChange={handleFileChange}  
+        // value={file}
         onKeyDown={(e) => {
           if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault()

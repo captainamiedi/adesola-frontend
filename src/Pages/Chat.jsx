@@ -312,7 +312,20 @@ function Chat() {
   }
 
   const handleFileChange = (event) => {
+    const MAX_FILE_SIZE = 5120
     const file = event.target.files[0];
+    console.log(file, 'file');
+    const fileSizeKiloBytes = file.size / 1024
+
+    if(fileSizeKiloBytes > MAX_FILE_SIZE){
+      alert('File size too large. maximum is 5mb.')
+      return 
+    }
+    if (file.name.split('.').pop().toLowerCase() !== 'pdf'){
+      alert('PDF only accepted for now.')
+      return 
+    }
+    
     setFile(file)
   }
 
